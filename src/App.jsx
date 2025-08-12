@@ -27,8 +27,6 @@ export default function App() {
   const languages = language.map((l, index) => (
     <span
       key={l.name}
-      role="listitem"
-      aria-label={`${l.name}${index < wrongGuessCount ? " (lost)" : ""}`}
       className={
         index < wrongGuessCount ? "language-item lost" : "language-item"
       }
@@ -46,7 +44,6 @@ export default function App() {
       <span
         key={index}
         className={clsx("character", wasMissed && "missed-character")}
-        aria-label={revealed ? ch : "blank space"}
       >
         {revealed ? ch : ""}
       </span>
@@ -68,10 +65,6 @@ export default function App() {
           isCorrect && "correct"
         )}
         disabled={gameOver || isGuessed}
-        aria-pressed={isGuessed}
-        aria-label={`Letter ${a}${
-          isCorrect ? " (correct)" : isWrong ? " (wrong)" : ""
-        }`}
         onClick={handleClick}
       >
         {a}
@@ -114,7 +107,7 @@ export default function App() {
   }
 
   return (
-    <main className="content" role="main">
+    <main className="content">
       {gameWon && <Confetti width={width - 16} height={height} />}
       <header>
         <h1>Assembly: Endgame</h1>
@@ -131,7 +124,6 @@ export default function App() {
           gameLost && "lost",
           wrongGuessCount > 0 && !gameOver && "langLost"
         )}
-        aria-live="polite"
       >
         {wrongGuessCount && !gameOver ? (
           <p>{farewellMessages[wrongGuessCount]}</p>
@@ -151,32 +143,14 @@ export default function App() {
         )}
       </section>
 
-      <section
-        className="languages-container"
-        role="list"
-        aria-label="Programming languages list"
-      >
-        {languages}
-      </section>
+      <section className="languages-container">{languages}</section>
 
-      <section className="word-container" aria-label="Word to guess">
-        {mapWord}
-      </section>
+      <section className="word-container">{mapWord}</section>
 
-      <section
-        className="keyboard-container"
-        role="region"
-        aria-label="Virtual keyboard"
-      >
-        {keyboard}
-      </section>
+      <section className="keyboard-container">{keyboard}</section>
 
       {gameOver && (
-        <button
-          className="new-game-btn"
-          onClick={newGame}
-          aria-label="Start a new game"
-        >
+        <button className="new-game-btn" onClick={newGame}>
           New Game
         </button>
       )}
