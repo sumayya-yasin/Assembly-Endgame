@@ -13,6 +13,7 @@ export default function App() {
   const [word, setWord] = useState(getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuessCount, setWrongGuessCount] = useState(0);
+  const [farewellMessages, setFarewellMessages] = useState({});
 
   const wordArr = [...word];
   const alphabet = [...alphabets];
@@ -23,30 +24,40 @@ export default function App() {
   const gameLost = wrongGuessCount >= language.length - 1;
   const gameOver = gameLost || gameWon;
 
-  const languages = language.map((l, index) => {
+  const languages = language.map((l, index) => (
+    <span
+      key={l.name}
+      role="listitem"
+      aria-label={`${l.name}${index < wrongGuessCount ? " (lost)" : ""}`}
+      className={
+        index < wrongGuessCount ? "language-item lost" : "language-item"
+      }
+      style={{ color: l.color, backgroundColor: l.backgroundColor }}
+    >
+      {l.name}
+    </span>
+  ));
+
+  const mapWord = wordArr.map((ch, index) => {
+    const revealed = guessedLetters.includes(ch) || gameLost;
+    const wasMissed = gameLost && !guessedLetters.includes(ch);
+
     return (
       <span
-        key={l.name}
-        className={
-          index < wrongGuessCount ? "language-item lost" : "language-item"
-        }
-        style={{ color: l.color, backgroundColor: l.backgroundColor }}
+        key={index}
+        className={clsx("character", wasMissed && "missed-character")}
+        aria-label={revealed ? ch : "blank space"}
       >
-        {l.name}
+        {revealed ? ch : ""}
       </span>
     );
   });
-
-  const mapWord = wordArr.map((ch, index) => (
-    <span key={index} className="character">
-      {guessedLetters.includes(ch) ? ch : ""}
-    </span>
-  ));
 
   const keyboard = alphabet.map((a) => {
     const isGuessed = guessedLetters.includes(a);
     const isWrong = isGuessed && !word.includes(a);
     const isCorrect = isGuessed && word.includes(a);
+
     return (
       <button
         key={a}
@@ -56,8 +67,11 @@ export default function App() {
           isWrong && "wrong",
           isCorrect && "correct"
         )}
-        disabled={gameOver}
+        disabled={gameOver || isGuessed}
         aria-pressed={isGuessed}
+        aria-label={`Letter ${a}${
+          isCorrect ? " (correct)" : isWrong ? " (wrong)" : ""
+        }`}
         onClick={handleClick}
       >
         {a}
@@ -73,7 +87,20 @@ export default function App() {
     setGuessedLetters((prev) => [...prev, val]);
 
     if (!word.includes(val)) {
-      setWrongGuessCount((prev) => prev + 1);
+      setWrongGuessCount((prev) => {
+        const newCount = prev + 1;
+        setFarewellMessages((msgs) => {
+          if (!msgs[newCount]) {
+            return {
+              ...msgs,
+              [newCount]: getFarewellText(language[newCount - 1].name),
+            };
+          }
+          return msgs;
+        });
+
+        return newCount;
+      });
     }
   }
 
@@ -82,11 +109,12 @@ export default function App() {
       setGuessedLetters([]);
       setWord(getRandomWord());
       setWrongGuessCount(0);
+      setFarewellMessages({});
     }
   }
 
   return (
-    <main className="content">
+    <main className="content" role="main">
       {gameWon && <Confetti width={width - 16} height={height} />}
       <header>
         <h1>Assembly: Endgame</h1>
@@ -103,9 +131,10 @@ export default function App() {
           gameLost && "lost",
           wrongGuessCount > 0 && !gameOver && "langLost"
         )}
+        aria-live="polite"
       >
         {wrongGuessCount && !gameOver ? (
-          <p>{getFarewellText(language[wrongGuessCount - 1].name)}</p>
+          <p>{farewellMessages[wrongGuessCount]}</p>
         ) : null}
 
         {gameLost && (
@@ -122,14 +151,32 @@ export default function App() {
         )}
       </section>
 
-      <section className="languages-container">{languages}</section>
+      <section
+        className="languages-container"
+        role="list"
+        aria-label="Programming languages list"
+      >
+        {languages}
+      </section>
 
-      <section className="word-container">{mapWord}</section>
+      <section className="word-container" aria-label="Word to guess">
+        {mapWord}
+      </section>
 
-      <section className="keyboard-container">{keyboard}</section>
+      <section
+        className="keyboard-container"
+        role="region"
+        aria-label="Virtual keyboard"
+      >
+        {keyboard}
+      </section>
 
       {gameOver && (
-        <button className="new-game-btn" onClick={newGame}>
+        <button
+          className="new-game-btn"
+          onClick={newGame}
+          aria-label="Start a new game"
+        >
           New Game
         </button>
       )}

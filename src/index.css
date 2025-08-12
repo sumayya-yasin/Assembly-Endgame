@@ -73,6 +73,8 @@ header p {
 
 .message-container.langLost {
   background-color: var(--message-color);
+  border: 1px dashed var(--primary-color);
+  border-radius: 0;
   visibility: visible;
 }
 
@@ -117,7 +119,7 @@ header p {
   justify-content: center;
 }
 
-.word-container span {
+.character {
   background-color: var(--accent-color);
   border-bottom: 1px solid var(--text-color);
   font-size: 18px;
@@ -126,6 +128,10 @@ header p {
   line-height: 40px;
   text-transform: uppercase;
   width: 40px;
+}
+
+.missed-character {
+  color: var(--failure-color);
 }
 
 .keyboard-container {
