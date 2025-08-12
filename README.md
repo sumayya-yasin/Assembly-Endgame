@@ -2,13 +2,24 @@
 
 A word-guessing game where you must correctly guess the hidden word before all programming languages are eliminated.
 
-## Preview
-
-![Game Preview](https://your-image-link-here.com/preview.png)
-
 ## Live Demo
 
 [Play Now](https://assembly-endgame-dusky.vercel.app/)
+
+## Preview
+
+<p>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_start.png" alt="Game Start" width="400"/>
+</p>
+<p>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_play.png" alt="Game Play" width="400"/>
+</p>
+<p>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_won.png" alt="Game Won" width="400"/>
+</p>
+<p>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_lost.png" alt="Game Lost" width="400"/>
+</p>
 
 ## Game Rules
 

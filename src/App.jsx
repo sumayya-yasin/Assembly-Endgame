@@ -107,53 +107,59 @@ export default function App() {
   }
 
   return (
-    <main className="content">
-      {gameWon && <Confetti width={width - 16} height={height} />}
-      <header>
-        <h1>Assembly: Endgame</h1>
-        <p>
-          Guess the word in under 8 attempts to keep the programming world safe
-          from Assembly!
-        </p>
-      </header>
+    <>
+      <main className="content">
+        {gameWon && <Confetti width={width - 16} height={height} />}
+        <header>
+          <h1>Assembly: Endgame</h1>
+          <p>
+            Guess the word in under 8 attempts to keep the programming world
+            safe from Assembly!
+          </p>
+        </header>
 
-      <section
-        className={clsx(
-          "message-container",
-          gameWon && "won",
-          gameLost && "lost",
-          wrongGuessCount > 0 && !gameOver && "langLost"
+        <section
+          className={clsx(
+            "message-container",
+            gameWon && "won",
+            gameLost && "lost",
+            wrongGuessCount > 0 && !gameOver && "langLost"
+          )}
+        >
+          {wrongGuessCount && !gameOver ? (
+            <p>{farewellMessages[wrongGuessCount]}</p>
+          ) : null}
+
+          {gameLost && (
+            <>
+              <h2>Game over!</h2>
+              <p>You lose! Better start learning Assembly 😭</p>
+            </>
+          )}
+          {gameWon && (
+            <>
+              <h2>You win!</h2>
+              <p>Well done! 🎉</p>
+            </>
+          )}
+        </section>
+
+        <section className="languages-container">{languages}</section>
+
+        <section className="word-container">{mapWord}</section>
+
+        <section className="keyboard-container">{keyboard}</section>
+
+        {gameOver && (
+          <button className="new-game-btn" onClick={newGame}>
+            New Game
+          </button>
         )}
-      >
-        {wrongGuessCount && !gameOver ? (
-          <p>{farewellMessages[wrongGuessCount]}</p>
-        ) : null}
-
-        {gameLost && (
-          <>
-            <h2>Game over!</h2>
-            <p>You lose! Better start learning Assembly 😭</p>
-          </>
-        )}
-        {gameWon && (
-          <>
-            <h2>You win!</h2>
-            <p>Well done! 🎉</p>
-          </>
-        )}
-      </section>
-
-      <section className="languages-container">{languages}</section>
-
-      <section className="word-container">{mapWord}</section>
-
-      <section className="keyboard-container">{keyboard}</section>
-
-      {gameOver && (
-        <button className="new-game-btn" onClick={newGame}>
-          New Game
-        </button>
-      )}
-    </main>
+      </main>
+      <footer className="footer">
+        © {new Date().getFullYear()} Sumayya · Assembly Endgame · All rights
+        reserved.
+      </footer>
+    </>
   );
 }
