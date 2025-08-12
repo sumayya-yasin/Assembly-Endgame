@@ -10,7 +10,7 @@ export default function App() {
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
 
   const { width, height } = useWindowSize();
-  const [word, setWord] = useState(getRandomWord());
+  const [word, setWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuessCount, setWrongGuessCount] = useState(0);
   const [farewellMessages, setFarewellMessages] = useState({});
