@@ -6,21 +6,6 @@ A word-guessing game where you must correctly guess the hidden word before all p
 
 [Play Now](https://assembly-endgame-dusky.vercel.app/)
 
-## Preview
-
-<p>
-  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_start.png" alt="Game Start" width="400"/>
-</p>
-<p>
-  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_play.png" alt="Game Play" width="400"/>
-</p>
-<p>
-  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_won.png" alt="Game Won" width="400"/>
-</p>
-<p>
-  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_lost.png" alt="Game Lost" width="400"/>
-</p>
-
 ## Game Rules
 
 - A random word is selected at the start of the game.
@@ -47,6 +32,17 @@ A word-guessing game where you must correctly guess the hidden word before all p
 - react-confetti – Victory animation.
 - clsx – Conditional class management.
 - Custom hooks and utility functions for game logic.
+
+## Preview
+
+<p>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_start.png" alt="Game Start" width="400"/>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_play.png" alt="Game Play" width="400"/>
+</p>
+<p>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_won.png" alt="Game Won" width="400"/>
+  <img src="https://github.com/sumayya-yasin/Assembly-Endgame/blob/main/preview/game_lost.png" alt="Game Lost" width="400"/>
+</p>
 
 ## Getting Started
 
