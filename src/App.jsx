@@ -2,9 +2,9 @@ import { useState } from "react";
 import clsx from "clsx";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
-import language from "./language.js";
-import getFarewellText from "./utils.js";
-import getRandomWord from "./words.js";
+import language from "./utils/language.js";
+import getFarewellText from "./utils/utils.js";
+import getRandomWord from "./utils/words.js";
 
 export default function App() {
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
