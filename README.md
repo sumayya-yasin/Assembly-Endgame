@@ -32,6 +32,7 @@ A word-guessing game where you must correctly guess the hidden word before all p
 ## Features
 
 - Random word generation for varied gameplay.
+- **Dynamic farewell messages** at each state, providing a fresh and humorous message every time you win, lose, or start a game.
 - Confetti animation on victory.
 - Quick restart via "New Game" button.
 - Automatic reveal of the word on loss.
